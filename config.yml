@@ -1,7 +1,7 @@
 pysite:
     base:
-        url: http://rss.dpedu.me
-        basedir: /home/www/dpedu.me/rss/htm
+        url: http://yourdomain.com
+        basedir: /path/to/pysite
         module: website
         templatedir: ./templates
     database:
