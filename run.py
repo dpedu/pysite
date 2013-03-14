@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-# Clear out old sessions BEFORE importing cherry
+# Clear out old session lockfiles BEFORE importing cherry
 import os
 for f in os.listdir("sessions/"):
 	if "lock" in f:
