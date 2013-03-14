@@ -17,10 +17,11 @@ class Main(object):
 		" Index page handler. "
 		vars = gatherTemplateVars(url)
 		vars["title"]="Page Title"
-		s=Session()
-		vars["samples"]=s.query(db.Sample).filter(db.Sample.ID==14).order_by(desc(db.Sample.Date)).limit(5).all()
-		yield pysite.quickrender('mytemplate.htm', vars)
-		s.close()
+		#s=Session()
+		#vars["samples"]=s.query(db.Sample).filter(db.Sample.ID==14).order_by(desc(db.Sample.Date)).limit(5).all()
+		vars["hello"] = "Welcome to pysite!"
+		yield pysite.quickrender('news.htm', vars)
+		#s.close()
 	
 	def handleError(self, error):
 		vars = gatherTemplateVars()

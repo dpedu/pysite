@@ -2,6 +2,7 @@
 from website import db
 from pysite import env,Session,pysite,SiteSession
 from time import time,mktime
+import os
 
 def gatherTemplateVars(activePath=None, options=[]):
 	tvars = {}
