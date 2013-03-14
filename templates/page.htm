@@ -1,0 +1,12 @@
+{% extends "html.htm" %}
+{% block body %}
+<body>
+	{% block content %}
+		{% if content %}{{ content }}{% else %}
+		
+		Default content
+			
+		{% endif %}
+	{% endblock %}
+</body>
+{% endblock %}

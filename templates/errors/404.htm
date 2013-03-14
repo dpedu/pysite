@@ -1,0 +1,10 @@
+{% extends "page.htm" %}
+{% block content %}
+
+<div class="errorpage errorpage-{{ code }}">
+	{% if message %}
+		<p>{{ message }}</p>
+	{% endif %}
+</div>
+
+{% endblock %}

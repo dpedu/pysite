@@ -1,0 +1,8 @@
+pysite:
+    base:
+        url: http://rss.dpedu.me
+        basedir: /home/www/dpedu.me/rss/htm
+        module: website
+        templatedir: ./templates
+    database:
+        uri: mysql://user:password@mysqlhost/dbname?charset=utf8

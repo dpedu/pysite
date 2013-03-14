@@ -1,0 +1,10 @@
+{% extends "page.htm" %}
+{% block content %}
+
+{% for thread in news %}
+	<div class="news">
+		{{ thread.Title }}
+	</div>
+{% endfor %}
+
+{% endblock %}
