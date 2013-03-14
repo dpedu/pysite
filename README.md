@@ -10,6 +10,26 @@ pirateradio.rit.edu
 
 hcsmp.com
 
+## Requires
+
+python2.7
+
+python-sqlalchemy
+
+python-yaml
+
+python-cherrypy3
+
+python-jinja2
+
+python-mysqldb
+
+uwsgi
+
+uwsgi-plugin-python
+
+Your favorite webserver (nginx conf included)
+
 ## Includes
 
 ckeditor
