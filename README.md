@@ -30,7 +30,7 @@ uwsgi-plugin-python
 
 Your favorite webserver (nginx conf included)
 
-## Includes
+## Included Libraries
 
 ckeditor
 
@@ -46,7 +46,7 @@ modernizr
 
 timepicker
 
-## Contact
+## Author
 
 github.com/dpedu
 
