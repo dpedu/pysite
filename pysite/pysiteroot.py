@@ -62,13 +62,12 @@ class PySiteRoot(object):
 		
 		if handlerMethod:
 			debug+= "Calling %s(\n\t%s\n\t%s\n\t%s\n) " % (handlerMethod.__name__, checkSegment, argsSegment, kwargs)
+			tb = None
 			try:
 				for line in handlerMethod(checkSegment, argsSegment, **kwargs):
 					yield line
 			except Exception,e:
 				tb = traceback.format_exc()
-			else:
-				tb = None
 			finally:
 				if not tb==None:
 					errorCode = "h:"+self.md5(str(time.time()))[0:14]
@@ -116,13 +115,12 @@ class PySiteRoot(object):
 			vars['_rendertime'] = round( (vars['_timeend']-vars['_timestart'])*1000 , 2)
 			loads = os.getloadavg()
 			vars['_sysload'] = "%s %s %s" % (round(loads[0], 2), round(loads[1], 2), round(loads[2], 2))
+		tb = None
 		try:
 			template = env.get_template(templateFilePath)
 			return template.render(vars)
 		except Exception,e:
 			tb = traceback.format_exc()
-		else:
-			tb = None
 		finally:
 			if not tb==None:
 				errorCode = "q:"+self.md5(str(time.time()))[0:14]
