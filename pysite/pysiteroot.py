@@ -61,8 +61,21 @@ class PySiteRoot(object):
 			handlerMethod = self.routes["<front>"]
 		
 		if handlerMethod:
-			for line in handlerMethod(checkSegment, argsSegment, **kwargs):
-				yield line
+			debug+= "Calling %s(\n\t%s\n\t%s\n\t%s\n) " % (handlerMethod.__name__, checkSegment, argsSegment, kwargs)
+			try:
+				for line in handlerMethod(checkSegment, argsSegment, **kwargs):
+					yield line
+			except Exception,e:
+				tb = traceback.format_exc()
+			else:
+				tb = None
+			finally:
+				if not tb==None:
+					errorCode = "h:"+self.md5(str(time.time()))[0:14]
+					print "---------- EXCEPTION ID %s ----------" % errorCode
+					print tb
+					print "---------------------------------------------------"
+					raise cherrypy.HTTPError(500, "An internal error prevented this page from loading. Please contact an administrator with the error code: %s" % errorCode)
 		else:
 			self.HTTPError(404)
 	handler.exposed= True
@@ -103,16 +116,21 @@ class PySiteRoot(object):
 			vars['_rendertime'] = round( (vars['_timeend']-vars['_timestart'])*1000 , 2)
 			loads = os.getloadavg()
 			vars['_sysload'] = "%s %s %s" % (round(loads[0], 2), round(loads[1], 2), round(loads[2], 2))
-		
 		try:
 			template = env.get_template(templateFilePath)
-		except Exception,e:
-			return str(e)
-		try:
 			return template.render(vars)
 		except Exception,e:
-			return str(e)
-		#return template.render(**dict(vars.items()))
+			tb = traceback.format_exc()
+		else:
+			tb = None
+		finally:
+			if not tb==None:
+				errorCode = "q:"+self.md5(str(time.time()))[0:14]
+				print "---------- EXCEPTION ID %s ----------" % errorCode
+				print tb
+				print "---------------------------------------------------"
+				raise cherrypy.HTTPError(500, "An internal error prevented this page from loading. Please contact an administrator with the error code: %s" % errorCode)
+				return "Error rendering template"
 	
 	def log(self, section, message):
 		print "%s [%s] %s" % (datetime.datetime.now().strftime("%a %b %d %H:%M:%S %Y"), section.upper(), message)
