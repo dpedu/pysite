@@ -9,6 +9,7 @@ import time
 import os
 import yaml
 import traceback
+import hashlib
 
 class PySiteRoot(object):
 	
@@ -135,4 +136,9 @@ class PySiteRoot(object):
 	
 	def log(self, section, message):
 		print "%s [%s] %s" % (datetime.datetime.now().strftime("%a %b %d %H:%M:%S %Y"), section.upper(), message)
+	
+	def md5(self, s):
+		m = hashlib.md5()
+		m.update(s)
+		return m.hexdigest()
 	
