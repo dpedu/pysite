@@ -61,7 +61,6 @@ class PySiteRoot(object):
 			handlerMethod = self.routes["<front>"]
 		
 		if handlerMethod:
-			debug+= "Calling %s(\n\t%s\n\t%s\n\t%s\n) " % (handlerMethod.__name__, checkSegment, argsSegment, kwargs)
 			tb = None
 			try:
 				for line in handlerMethod(checkSegment, argsSegment, **kwargs):
