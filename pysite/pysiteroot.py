@@ -66,7 +66,10 @@ class PySiteRoot(object):
 				for line in handlerMethod(checkSegment, argsSegment, **kwargs):
 					yield line
 			except Exception,e:
-				tb = traceback.format_exc()
+				if isinstance(e, cherrypy.HTTPRedirect):
+					raise e
+				else:
+					tb = traceback.format_exc()
 			finally:
 				if not tb==None:
 					errorCode = "h:"+self.md5(str(time.time()))[0:14]
